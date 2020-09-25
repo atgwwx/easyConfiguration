@@ -1,0 +1,9 @@
+.left-panel {
+    width:200px;
+    height: 100%;
+    border:1px solid #000;
+}
+.item-component {
+    padding: 10px;
+    border: 1px solid #eee;
+}
