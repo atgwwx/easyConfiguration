@@ -4,6 +4,7 @@ import { ReactSortable } from "react-sortablejs";
 
 
 export default () => {
+    console.log('Form ***********')
     const [expand, setExpand] = useState(false);
     const [fieldList, setFieldList] = useState([
         // { id: 0, name: "Header" },
@@ -44,7 +45,6 @@ export default () => {
                 style={{ height: '80px' }}
                 list={fieldList}
                 setList={setFieldList}>
-
             </ReactSortable>
             <Form
                 form={form}

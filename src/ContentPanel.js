@@ -20,7 +20,7 @@ const BasicFunction = props => {
 
   return (
     <div className="content-panel">
-         <ReactSortable 
+      <ReactSortable 
             group={{
                 name: 'shared',
                 pull: 'clone' // To clone: set pull to 'clone'
@@ -29,7 +29,7 @@ const BasicFunction = props => {
             setList={setState}>
         {state.map(item => {
             const Component = ComponentsMap[item.name];
-            return Component ? <div className="item-wrapper"><Component /> </div>: <div className="item-wrapper" key={item.id}>{item.name}</div>;
+            return Component ? <div key={'c' + item.id} className="item-wrapper" ><Component /> </div>: <div key={'u'+ item.id} className="item-wrapper" >{item.name}</div>;
         })}
       </ReactSortable>
     </div>
