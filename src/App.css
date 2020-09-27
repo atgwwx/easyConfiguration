@@ -45,3 +45,11 @@ html , body {
     transform: rotate(360deg);
   }
 }
+
+
+/* antd */
+
+.ant-layout-content {
+  padding:10px;
+  background-color: #eee;
+}

@@ -2,7 +2,7 @@
 import React, { FC, useState } from "react";
 import { ReactSortable } from "react-sortablejs";
 import Button from './components/Button'
-import './RightPanel.css'
+import './RightPanel.scss'
 
 const ComponentsMap = {
     'Button' : Button
@@ -14,18 +14,7 @@ const BasicFunction = props => {
 
   return (
     <div className="right-panel">
-         <ReactSortable 
-            group={{
-                name: 'shared',
-                pull: 'clone' // To clone: set pull to 'clone'
-            }}
-            list={state} 
-            setList={setState}>
-        {state.map(item => {
-            const Component = ComponentsMap[item.name];
-            return Component ? <div className="item-component"><Component /> </div>: <div className="item-component" key={item.id}>{item.name}</div>;
-        })}
-      </ReactSortable>
+        
     </div>
   );
 }
