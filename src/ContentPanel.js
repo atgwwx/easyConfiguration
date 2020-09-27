@@ -2,14 +2,20 @@
 import React, { FC, useState } from "react";
 import { ReactSortable } from "react-sortablejs";
 import Button from './components/Button'
-import './ContentPanel.css'
+import Input from './components/Input'
+import Form from './components/Form'
+import Table from './components/Table'
+import './ContentPanel.scss'
 
 const ComponentsMap = {
-    'Button' : Button
+    'Button' : Button,
+    'Input' : Input,
+    'Form' : Form,
+    'Table' : Table,
 }
 const BasicFunction = props => {
   const [state, setState] = useState([
-    { id: 0, name: "Header" },
+    // { id: 0, name: "Header" },
   ]);
 
   return (
@@ -23,7 +29,7 @@ const BasicFunction = props => {
             setList={setState}>
         {state.map(item => {
             const Component = ComponentsMap[item.name];
-            return Component ? <div className="item-component"><Component /> </div>: <div className="item-component" key={item.id}>{item.name}</div>;
+            return Component ? <div className="item-wrapper"><Component /> </div>: <div className="item-wrapper" key={item.id}>{item.name}</div>;
         })}
       </ReactSortable>
     </div>

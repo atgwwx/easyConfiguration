@@ -2,36 +2,38 @@
 import React, { FC, useState } from "react";
 import { ReactSortable } from "react-sortablejs";
 
-import './LeftPanel.css'
+import './LeftPanel.scss'
 
 const BasicFunction = props => {
-  const [state, setState] = useState([
-    { id: 1, name: "Button" },
-    { id: 2, name: "Text" },
-    { id: 3, name: "Input" },
-    { id: 4, name: "Radio" },
-    { id: 5, name: "Select" }
-  ]);
+    const [state, setState] = useState([
+        { id: 'button', name: "Button" },
+        { id: 'input', name: "Input" },
+        { id: 'text', name: "Text" },
+        { id: 'radio', name: "Radio" },
+        { id: 'select', name: "Select" },
+        { id: 'form', name: "Form" },
+        { id: 'table', name: "Table" },
+    ]);
 
-  return (
-      <div className="left-panel">
+    return (
+        <div className="left-panel">
+            <div className="title">组件：</div>
+            <ReactSortable
+                group={{
+                    name: 'shared',
+                    pull: 'clone', // To clone: set pull to 'clone'
+                    put: false
+                }}
+                sort={false}
+                list={state}
+                setList={setState}>
 
-    <ReactSortable 
-        group={{
-            name: 'shared',
-            pull: 'clone', // To clone: set pull to 'clone'
-            put: false
-        }}
-        sort={false}
-        list={state} 
-        setList={setState}>
-        
-      {state.map(item => (
-        <div className="item-component" key={item.id}>{item.name}</div>
-      ))}
-    </ReactSortable>
-    </div>
+                {state.map(item => (
+                    <div className="item-component" key={item.id}>{item.name}</div>
+                ))}
+            </ReactSortable>
+        </div>
 
-  );
+    );
 }
 export default BasicFunction;

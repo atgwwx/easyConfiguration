@@ -14,7 +14,7 @@ const BasicFunction = props => {
 
   return (
     <div className="right-panel">
-        
+        <div className="title">配置：</div>
     </div>
   );
 }

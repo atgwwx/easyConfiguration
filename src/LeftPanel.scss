@@ -1,6 +1,10 @@
 .left-panel {
     background-color: #fff;
     height:500px;
+    .title {
+        padding: 10px;
+        text-align: left;
+    }
 }
 .item-component {
     padding: 10px;
