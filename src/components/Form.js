@@ -3,6 +3,7 @@ import { Form, Row, Col, Input, Button } from 'antd';
 import { ReactSortable } from "react-sortablejs";
 
 
+
 export default () => {
     console.log('Form ***********')
     const [expand, setExpand] = useState(false);
@@ -14,6 +15,7 @@ export default () => {
     const getFields = () => {
         
         return fieldList.map((item, i) => {
+            console.log(item)
             return <Col span={6} key={i}>
                 <Form.Item
                     name={`field-${i}`}

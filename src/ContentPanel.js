@@ -1,6 +1,7 @@
 
 import React, { FC, useState } from "react";
 import { ReactSortable } from "react-sortablejs";
+import ConfigItemWrapper from './ConfigItemWrapper'
 import Button from './components/Button'
 import Input from './components/Input'
 import Form from './components/Form'
@@ -28,8 +29,7 @@ const BasicFunction = props => {
             list={state} 
             setList={setState}>
         {state.map(item => {
-            const Component = ComponentsMap[item.name];
-            return Component ? <div key={'c' + item.id} className="item-wrapper" ><Component /> </div>: <div key={'u'+ item.id} className="item-wrapper" >{item.name}</div>;
+            return <ConfigItemWrapper item={item} key={item.id}/>
         })}
       </ReactSortable>
     </div>

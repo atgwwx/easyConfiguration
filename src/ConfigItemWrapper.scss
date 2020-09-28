@@ -1,0 +1,8 @@
+.item-wrapper {
+    border:1px dotted rgb(59, 29, 226);
+    padding: 2px;
+    margin-top: 2px;
+    &:hover{
+        border-width: 2px;
+    }
+}
