@@ -8,13 +8,11 @@ const ComponentsMap = {
     'Button' : Button
 }
 const BasicFunction = props => {
-  const [state, setState] = useState([
-    { id: 0, name: "Header" },
-  ]);
+  const { currentItem = {}} = props;
 
   return (
     <div className="right-panel">
-        <div className="title">配置：</div>
+        <div className="title">配置：{currentItem.name}</div>
     </div>
   );
 }

@@ -5,8 +5,8 @@ import './ConfigItemWrapper.scss'
 class ConfigItemWrapper extends React.Component {
 
     onClick = () => {
-        const { item} = this.props;
-        console.log(item)
+        const { item, dispatch} = this.props;
+        dispatch({type:'setCurrentItem', data:item})
     }
     render() {
         const { item: { name, id } } = this.props;
