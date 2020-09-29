@@ -9,6 +9,15 @@ const ComponentsMap = {
     'Form' : Form,
     'Table' : Table,
 }
+const ComponentsConfig = {
+    'Button':{
+        props:[{
+            label:'标题',
+            name:'text'
+        }]
+    }
+}
 export {
-    ComponentsMap
+    ComponentsMap,
+    ComponentsConfig
 }

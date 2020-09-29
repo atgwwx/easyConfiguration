@@ -8,7 +8,7 @@ const BasicFunction = props => {
   // const [state, setState] = useState([
   //   // { id: 0, name: "Header" },
   // ]);
-
+  const {store:{list}} = props;
   return (
     <div className="content-panel">
       <ReactSortable 
@@ -16,10 +16,10 @@ const BasicFunction = props => {
                 name: 'shared',
                 pull: 'clone' // To clone: set pull to 'clone'
             }}
-            list={props.list} 
+            list={list} 
             setList={(data)=>props.dispatch({type:'setList', data})}>
-        {props.list.map(item => {
-            return <ConfigItemWrapper item={item} key={item.id} dispatch={props.dispatch}/>
+        {list.map(item => {
+            return <ConfigItemWrapper item={item} key={item.id} store={props.store} dispatch={props.dispatch}/>
         })}
       </ReactSortable>
     </div>

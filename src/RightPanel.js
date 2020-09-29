@@ -1,19 +1,50 @@
 
 import React, { FC, useState } from "react";
-import { ReactSortable } from "react-sortablejs";
-import Button from './components/Button'
+import { Form, Input, Button, Checkbox } from 'antd';
+import { ComponentsConfig } from './Constants'
 import './RightPanel.scss'
 
-const ComponentsMap = {
-    'Button' : Button
-}
-const BasicFunction = props => {
-  const { currentItem = {}} = props;
+const RightPanel = props => {
+    const { currentItem = {} } = props;
 
-  return (
-    <div className="right-panel">
-        <div className="title">配置：{currentItem.name}</div>
-    </div>
-  );
+    function onFinish (values) {
+        console.log(values)
+        props.dispatch({
+            type:'setConfig',
+            data:{
+                id: currentItem.id,
+                values
+            }
+        })
+    }
+    function getFields(itemName) {
+        
+        const props = ComponentsConfig[itemName].props;
+        const layout = {
+            labelCol: { span: 4 },
+            wrapperCol: { span: 20 },
+        };
+
+        return <Form
+            {...layout}
+            name="basic"
+            onFinish={onFinish}
+        >
+            {props.map(item => {
+                return  <Form.Item
+                label={item.label}
+                name={item.name}
+            >
+                <Input />
+            </Form.Item>
+            })}
+        </Form>
+    }
+    return (
+        <div className="right-panel">
+            <div className="title">配置：{currentItem.name}</div>
+            {currentItem.name && getFields(currentItem.name)}
+        </div>
+    );
 }
-export default BasicFunction;
+export default RightPanel;

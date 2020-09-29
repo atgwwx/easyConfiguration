@@ -13,7 +13,7 @@ const { Header, Footer, Sider, Content } = Layout;
 
 const initState = {
   list:[],
-  configList:{},
+  configs:{},
   currentItem:{}
 };
 
@@ -22,7 +22,10 @@ function reducer (state, action) {
     case 'setList':
       return {...state, list: action.data}
     case 'setConfig':
-      return {}
+      const configs = state.configs;
+      const data = action.data;
+      configs[data.id] = data.values
+      return {...state, configs}
     case 'setCurrentItem':
       return {...state, currentItem:action.data}
   }
@@ -36,8 +39,8 @@ function App() {
         <Header>Header</Header>
         <Layout>
           <Sider><LeftPanel /></Sider>
-          <Content><ContentPanel list={store.list} dispatch={dispatch} /></Content>
-          <Sider><RightPanel currentItem={store.currentItem}/></Sider>
+          <Content><ContentPanel store={store} dispatch={dispatch} /></Content>
+          <Sider><RightPanel currentItem={store.currentItem} dispatch={dispatch}/></Sider>
         </Layout>
         <Footer>Footer</Footer>
       </Layout>

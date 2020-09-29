@@ -9,9 +9,11 @@ class ConfigItemWrapper extends React.Component {
         dispatch({type:'setCurrentItem', data:item})
     }
     render() {
+        const {store:{configs}} = this.props;
         const { item: { name, id } } = this.props;
         const Component = ComponentsMap[name];
-        return Component ? <div onClick={this.onClick} className="item-wrapper"> <Component /> </div>: null;
+        const props = configs[id] || {};
+        return Component ? <div onClick={this.onClick} className="item-wrapper"> <Component {...props}/> </div>: null;
         
     }
 }
