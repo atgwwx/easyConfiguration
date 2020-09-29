@@ -1,21 +1,24 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { ComponentsMap } from './Constants'
+import AppContext from './AppContext'
 import './ConfigItemWrapper.scss'
 
-class ConfigItemWrapper extends React.Component {
+function ConfigItemWrapper(props) {
 
-    onClick = () => {
-        const { item, dispatch} = this.props;
+    const app = useContext(AppContext);
+    const {store, dispatch} = app;
+
+    function onClick() {
+        const { item} = props;
         dispatch({type:'setCurrentItem', data:item})
     }
-    render() {
-        const {store:{configs}} = this.props;
-        const { item: { name, id } } = this.props;
-        const Component = ComponentsMap[name];
-        const props = configs[id] || {};
-        return Component ? <div onClick={this.onClick} className="item-wrapper"> <Component {...props}/> </div>: null;
+  
+    const { item: { name, id } } = props;
+    const Component = ComponentsMap[name];
+    const {configs} = store;
+    const componentProps = configs[id] || {};
+    return Component ? <div onClick={onClick} className="item-wrapper"> <Component {...componentProps}/> </div>: null;
         
-    }
 }
 
 export default ConfigItemWrapper;

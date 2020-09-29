@@ -1,14 +1,13 @@
 
-import React, { FC, useState } from "react";
+import React, { FC, useContext } from "react";
 import { ReactSortable } from "react-sortablejs";
 import ConfigItemWrapper from './ConfigItemWrapper'
+import AppContext from './AppContext'
 import './ContentPanel.scss'
 
-const BasicFunction = props => {
-  // const [state, setState] = useState([
-  //   // { id: 0, name: "Header" },
-  // ]);
-  const {store:{list}} = props;
+const ContentPanel = props => {
+  const app = useContext(AppContext)
+  const {store:{list}, dispatch} = app;
   return (
     <div className="content-panel">
       <ReactSortable 
@@ -17,12 +16,12 @@ const BasicFunction = props => {
                 pull: 'clone' // To clone: set pull to 'clone'
             }}
             list={list} 
-            setList={(data)=>props.dispatch({type:'setList', data})}>
+            setList={(data)=>dispatch({type:'setList', data})}>
         {list.map(item => {
-            return <ConfigItemWrapper item={item} key={item.id} store={props.store} dispatch={props.dispatch}/>
+            return <ConfigItemWrapper item={item} key={item.id} />
         })}
       </ReactSortable>
     </div>
   );
 }
-export default BasicFunction;
+export default ContentPanel;

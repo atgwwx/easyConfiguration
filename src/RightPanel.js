@@ -1,14 +1,17 @@
 
-import React, { FC, useState } from "react";
+import React, { FC, useState, useContext } from "react";
 import { Form, Input, Button, Checkbox } from 'antd';
 import { ComponentsConfig } from './Constants'
+import AppContext from './AppContext'
 import './RightPanel.scss'
 
 const RightPanel = props => {
-    const { currentItem = {} } = props;
-
+    const app = useContext(AppContext);
+    const {store, dispatch} = app;
+    const { currentItem = {} } = store;
+    
     function onFinish (values) {
-        props.dispatch({
+        dispatch({
             type:'setConfig',
             data:{
                 id: currentItem.id,
@@ -33,6 +36,7 @@ const RightPanel = props => {
                 return  <Form.Item
                 label={item.label}
                 name={item.name}
+                key={item.name}
             >
                 <Input />
             </Form.Item>

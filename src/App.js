@@ -3,9 +3,8 @@ import LeftPanel from './LeftPanel'
 import ContentPanel from './ContentPanel'
 import RightPanel from './RightPanel'
 import { Layout } from 'antd';
+import AppContext from './AppContext'
 
-
-import logo from './logo.svg';
 import './App.css';
 import 'antd/dist/antd.css';
 
@@ -34,21 +33,17 @@ function App() {
   const [store, dispatch] = useReducer(reducer, initState); 
   
   return (
-    <div className="App">
+    <AppContext.Provider value={{store, dispatch}}>
       <Layout>
         <Header>Header</Header>
         <Layout>
           <Sider><LeftPanel /></Sider>
-          <Content><ContentPanel store={store} dispatch={dispatch} /></Content>
-          <Sider><RightPanel currentItem={store.currentItem} dispatch={dispatch}/></Sider>
+          <Content><ContentPanel /></Content>
+          <Sider><RightPanel /></Sider>
         </Layout>
         <Footer>Footer</Footer>
       </Layout>
-      {/* <div className="main-content">
-      
-      
-      </div> */}
-    </div>
+    </AppContext.Provider>
   );
 }
 
