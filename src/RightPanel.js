@@ -8,7 +8,6 @@ const RightPanel = props => {
     const { currentItem = {} } = props;
 
     function onFinish (values) {
-        console.log(values)
         props.dispatch({
             type:'setConfig',
             data:{
@@ -18,7 +17,7 @@ const RightPanel = props => {
         })
     }
     function getFields(itemName) {
-        
+        if(!ComponentsConfig[itemName])return null;
         const props = ComponentsConfig[itemName].props;
         const layout = {
             labelCol: { span: 4 },
